@@ -1,6 +1,15 @@
+import headerimg from "../assets/headerimg.png";
+import "./Header.css";
+
 const Header = () =>{
-    return(
-        <h1>This is the header</h1>
+    return (
+        <div className="header">
+            <img src={headerimg} alt="headerimg" />
+        <>
+        <h1>Pollyglot Translator</h1>
+        <h2>Translate text from any language to any language</h2>
+        </>
+        </div>
     )
 }
 
