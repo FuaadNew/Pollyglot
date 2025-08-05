@@ -4,7 +4,9 @@ import "./Header.css";
 const Header = () =>{
     return (
         <div className="header">
-            <img src={headerimg} alt="headerimg" />
+            <div className = "header-image-container">
+                <img src={headerimg} className="header-image" alt="headerimg" />
+            </div>
         <>
         <h1>Pollyglot Translator</h1>
         <h2>Translate text from any language to any language</h2>
