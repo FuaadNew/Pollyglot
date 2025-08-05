@@ -1,6 +1,10 @@
+import "./Body.css";
+
 const Body = () =>{
     return(
-        <h1>This is the body</h1>
+        <div className="body">
+            <h1>This is the body</h1>
+        </div>
     )
 }
 
