@@ -4,13 +4,13 @@ import "./Header.css";
 const Header = () =>{
     return (
         <div className="header">
-            <div className = "header-image-container">
-                <img src={headerimg} className="header-image" alt="headerimg" />
+            <div className="header-content">
+                <div className="header-image-container">
+                    <img src={headerimg} className="header-image" alt="Global communication" />
+                </div>
+                <h1>PollyGlot</h1>
+                <h2>Perfect Translation Every Time</h2>
             </div>
-        <>
-        <h1>Pollyglot Translator</h1>
-        <h2>Translate text from any language to any language</h2>
-        </>
         </div>
     )
 }

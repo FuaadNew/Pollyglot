@@ -12,7 +12,7 @@ const client = new OpenAI({
 
 
 const Body = () =>{
-    
+    const [language, setLanguage] = useState("en");
     const [text, setText] = useState("");
     const [translatedText, setTranslatedText] = useState("");
     
@@ -20,33 +20,61 @@ const Body = () =>{
     const handleTranslate = async () =>{
         const response = await client.responses.create({
             model: "gpt-3.5-turbo",
-            input: text,
+            input: "Translate this text to " + text + " in " + language + "with proper grammar and punctuation and without any other text"
         });
         setTranslatedText(response.output_text);
         setText("");
     }
     return(
         <div className="body">
-            <h1>Text to translate 👇</h1>
-            <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder="Enter text to translate" />
-            <button onClick = {handleTranslate}>Translate</button>
+            <div className="translation-container">
+                <div className="input-section">
+                    <h1 className="section-title">Text to translate 📝</h1>
+                    <textarea 
+                        className="textarea"
+                        value={text} 
+                        onChange={(e) => {setText(e.target.value); setTranslatedText("")}} 
+                        placeholder="Enter the text you'd like to translate..." 
+                    />
+                </div>
 
-            <h2>Select language</h2>
-            <select>
-                <option value="en">English</option>
-                <option value="es">Spanish</option>
-                <option value="fr">French</option>
-                <option value="de">German</option>
-                <option value="hi">Hindi</option>
-                <option value="ar">Arabic</option>
-                <option value="ja">Japanese</option>
-                <option value="ko">Korean</option>
-                <option value="ru">Russian</option>
-                <option value="zh">Chinese</option>
-                <option value="it">Italian</option>
-            </select>
-            <h1>Translated text 👇</h1>
-            <textarea value={translatedText} placeholder="Translated text" />
+                <div className="controls">
+                    <div>
+                        <label className="language-label">Translate to:</label>
+                        <select 
+                            className="language-select"
+                            value={language} 
+                            onChange={(e) => setLanguage(e.target.value)}
+                        >
+                            <option value="en">🇺🇸 English</option>
+                            <option value="es">🇪🇸 Spanish</option>
+                            <option value="fr">🇫🇷 French</option>
+                            <option value="de">🇩🇪 German</option>
+                            <option value="hi">🇮🇳 Hindi</option>
+                            <option value="ar">🇸🇦 Arabic</option>
+                            <option value="ja">🇯🇵 Japanese</option>
+                            <option value="ko">🇰🇷 Korean</option>
+                            <option value="ru">🇷🇺 Russian</option>
+                            <option value="zh">🇨🇳 Chinese</option>
+                            <option value="it">🇮🇹 Italian</option>
+                        </select>
+                    </div>
+                    
+                    <button className="translate-button" onClick={handleTranslate}>
+                        ✨ Translate
+                    </button>
+                </div>
+
+                <div className="output-section">
+                    <h1 className="section-title">Translation ✨</h1>
+                    <textarea 
+                        className="textarea output-textarea"
+                        value={translatedText} 
+                        placeholder="Your translation will appear here..." 
+                        readOnly 
+                    />
+                </div>
+            </div>
         </div>
     )
 }
