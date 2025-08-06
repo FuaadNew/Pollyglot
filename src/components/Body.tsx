@@ -1,13 +1,28 @@
 import "./Body.css";
 import { useState } from "react";
+import OpenAI from "openai";
+
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+const client = new OpenAI({
+    dangerouslyAllowBrowser: true,
+    apiKey: apiKey,
+});
+
+
 
 
 const Body = () =>{
+    
     const [text, setText] = useState("");
     const [translatedText, setTranslatedText] = useState("");
+    
 
-    const handleTranslate = () =>{
-        setTranslatedText(text);
+    const handleTranslate = async () =>{
+        const response = await client.responses.create({
+            model: "gpt-3.5-turbo",
+            input: text,
+        });
+        setTranslatedText(response.output_text);
         setText("");
     }
     return(
